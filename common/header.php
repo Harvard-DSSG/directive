@@ -30,10 +30,10 @@
     ?>
 
     <!-- JavaScripts -->
-    <?php 
+    <?php
     queue_js_file(array('assets/js/util','assets/js/skel.min','assets/js/main','assets/js/jquery.min'));
     queue_js_file(array('menu-js/util','menu-js/skel.min','menu-js/main','menu-js/jquery.min'));
-    echo head_js(); 
+    echo head_js();
     ?>
 </head>
 
@@ -48,7 +48,7 @@
     <div id="head-wrapper">
     <!-- Header -->
         <header id="head-header">
-            <div class="inner">          
+            <div class="inner">
                 <!-- Nav -->
                 <nav>
                     <ul>
@@ -60,26 +60,24 @@
     <!-- Menu -->
         <nav id="menu">
             <h2>Menu</h2>
-                <ul>
-                    <li><a href="<?php echo WEB_ROOT; ?>">Home</a></li>
-                    <li><a href="about">About</a></li>
-                    <li><a href="generic.html">Tempus etiam</a></li>
-                    <li><a href="generic.html">Consequat dolor</a></li>
-                    <li><a href="elements.html">Elements</a></li>
-                </ul>
+            <?php
+              # Nested menu items just show up between separators, and deeply
+              # nested menu items aren't differentiated, something to look at later
+              echo public_nav_main(array('role' => 'navigation'));
+            ?>
         </nav>
     </div><!-- end head-wrapper -->
    <!-- end menu -->
 
     <!-- Directive Header -->
     <div id="header">
-        <span class="logo icon fa-paper-plane-o"></span>
+        <span class="logo icon <?php echo(get_theme_option('homepage_icon')); ?>"></span>
             <?php fire_plugin_hook('public_header', array('view'=>$this)); ?>
             <h1><?php echo link_to_home_page(theme_logo()); ?></h1>
-            <p>A responsive HTML5 + CSS3 site template designed by <a href="http://html5up.net">HTML5 UP</a>
-            <br />
-            and released for free under the <a href="http://html5up.net/license">Creative Commons license</a>.
-            </p>
+
+            <?php if (get_theme_option('homepage_subheader')): ?>
+              <p><?php echo(get_theme_option('homepage_subheader')); ?></p>
+            <?php endif; ?>
     </div><!-- end div #header -->
 
     <!-- This starts the #main div necessary for index.php  -->
@@ -104,13 +102,11 @@
             <!-- Menu -->
             <nav id="menu">
                 <h2>Menu</h2>
-                    <ul>
-                        <li><a href="<?php echo WEB_ROOT; ?>">Home</a></li>
-                        <li><a href="about">About</a></li>
-                        <li><a href="generic.html">Tempus etiam</a></li>
-                        <li><a href="generic.html">Consequat dolor</a></li>
-                        <li><a href="elements.html">Elements</a></li>
-                    </ul>
+                <?php
+                  # Nested menu items just show up between separators, and deeply
+                  # nested menu items aren't differentiated, something to look at later
+                  echo public_nav_main(array('role' => 'navigation'));
+                ?>
             </nav>
         </div><!-- end head-wrapper -->
 
@@ -118,5 +114,5 @@
         <div id="main">
 
         <?php fire_plugin_hook('public_content_top', array('view'=>$this)); ?>
-        
+
     <?php endif ?><!-- end php header options -->
