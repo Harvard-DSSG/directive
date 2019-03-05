@@ -7,6 +7,7 @@
       <div id="footer">
         <div class="container 75%">
 
+          <!--
           <header class="major last">
             <h2>Questions or comments?</h2>
           </header>
@@ -36,17 +37,62 @@
               </div>
             </div>
           </form>
+          -->
 
+          <?php if (
+            get_theme_option("social_icon_1")
+             || get_theme_option("social_icon_2")
+             || get_theme_option("social_icon_3")
+             || get_theme_option("social_icon_4")
+             || get_theme_option("social_icon_5")):
+          ?>
           <ul class="icons">
-            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
-            <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+            <?php if (get_theme_option("social_icon_1")): ?>
+              <li>
+                <a href="<?php echo(get_theme_option("social_icon_1_link")); ?>" class="icon fab fa-<?php echo(strtolower(get_theme_option("social_icon_1"))); ?>">
+                  <span class="label"><?php echo(ucfirst(get_theme_option("social_icon_1"))) ?></span>
+                </a>
+              </li>
+            <?php endif; ?>
+            <?php if (get_theme_option("social_icon_2")): ?>
+              <li>
+                <a href="<?php echo(get_theme_option("social_icon_2_link")); ?>" class="icon fab fa-<?php echo(strtolower(get_theme_option("social_icon_2"))); ?>">
+                  <span class="label"><?php echo(ucfirst(get_theme_option("social_icon_2"))) ?></span>
+                </a>
+              </li>
+            <?php endif; ?>
+            <?php if (get_theme_option("social_icon_3")): ?>
+              <li>
+                <a href="<?php echo(get_theme_option("social_icon_3_link")); ?>" class="icon fab fa-<?php echo(strtolower(get_theme_option("social_icon_3"))); ?>">
+                  <span class="label"><?php echo(ucfirst(get_theme_option("social_icon_3"))) ?></span>
+                </a>
+              </li>
+            <?php endif; ?>
+            <?php if (get_theme_option("social_icon_4")): ?>
+              <li>
+                <a href="<?php echo(get_theme_option("social_icon_4_link")); ?>" class="icon fab fa-<?php echo(strtolower(get_theme_option("social_icon_4"))); ?>">
+                  <span class="label"><?php echo(ucfirst(get_theme_option("social_icon_4"))) ?></span>
+                </a>
+              </li>
+            <?php endif; ?>
+            <?php if (get_theme_option("social_icon_5")): ?>
+              <li>
+                <a href="<?php echo(get_theme_option("social_icon_5_link")); ?>" class="icon fab fa-<?php echo(strtolower(get_theme_option("social_icon_5"))); ?>">
+                  <span class="label"><?php echo(ucfirst(get_theme_option("social_icon_5"))) ?></span>
+                </a>
+              </li>
+            <?php endif; ?>
           </ul>
+        <?php endif; ?>
 
           <ul class="copyright">
-            <li>&copy; Untitled. All rights reserved.</li><li><?php echo __('Proudly powered by <a href="http://omeka.org">Omeka</a>.'); ?></li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            <?php if (option('copyright')): ?>
+              <li><?php echo(option('copyright')); ?></li>
+            <?php else: ?>
+              <li>&copy; <?php echo(option('site_title')); ?>. All rights reserved.</li>
+            <?php endif; ?>
+            <li><?php echo __('Proudly powered by <a href="http://omeka.org">Omeka</a>.'); ?></li>
+            <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
           </ul>
 
         </div>
