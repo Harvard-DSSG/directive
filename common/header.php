@@ -71,7 +71,7 @@
 
     <!-- Directive Header -->
     <div id="header">
-        <span class="logo icon <?php echo(get_theme_option('homepage_icon')); ?>"></span>
+        <span class="logo icon fas <?php echo(get_theme_option('homepage_icon')); ?>"></span>
             <?php fire_plugin_hook('public_header', array('view'=>$this)); ?>
             <h1><?php echo link_to_home_page(theme_logo()); ?></h1>
 
