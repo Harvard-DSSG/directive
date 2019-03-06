@@ -2311,6 +2311,10 @@
 				border-bottom: solid 1px rgba(224, 224, 224, 0.75);
 			}
 
+	body.exhibits.browse table img {
+		max-height: 4em;
+	}
+
 /* Button */
 
 	input[type="submit"],
@@ -2406,6 +2410,34 @@
 			background: none;
 			border: none;
 			padding: 0;
+		}
+/* Section */
+
+	.section {
+		background: #ffffff;
+		margin-bottom: 6em;
+		padding: 3.5em;
+		border-top: 1px solid rgba(224, 224, 224, 0.75);
+		border-bottom: 1px solid rgba(224, 224, 224, 0.75);
+		position: relative;
+	}
+		.section::before, .section::after {
+			background: rgba(224, 224, 224, 0.75);
+			content: '';
+			display: block;
+			height: 1px;
+			left: 0;
+			position: absolute;
+			width: 100%;
+		}
+		.section::before {
+			top: 10px;
+		}
+		.section::after {
+			bottom: 10px;
+		}
+		.section .exhibit-block {
+			overflow: auto;
 		}
 
 /* Feature */
@@ -2802,7 +2834,7 @@
 
 		/* Box */
 
-			.box {
+			.box, .section {
 				padding: 2.5em;
 				margin-bottom: 4em;
 			}
@@ -2945,7 +2977,7 @@
 
 		/* Box */
 
-			.box {
+			.box, .section {
 				padding: 2em;
 				margin-bottom: 2em;
 			}
@@ -3076,7 +3108,7 @@
 
 		/* Box */
 
-			.box {
+			.box, .section {
 				padding: 2em 1em;
 			}
 

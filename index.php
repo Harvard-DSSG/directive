@@ -1,48 +1,39 @@
 <?php echo head(array('bodyid'=>'home')); ?>
 
-                <header class="major container 75%">
-                    <h2>We conduct experiments that
-                    <br />
-                    may or may not seriously
-                    <br />
-                    break the universe</h2>
-                    
-                    <p>Tellus erat mauris ipsum fermentum<br />
-                    etiam vivamus nunc nibh morbi.</p>
-                    
-                </header>
-
-                <div class="box alt container">
-                    <section class="feature left">
-                        <a href="#" class="image icon fa-signal"><img src="<?php echo img('pic01.jpg'); ?>" alt="" /></a>
-                        <div class="content">
-                            <h3>The First Thing</h3>
-                            <p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis fusce lacus.</p>
-                        </div>
-                    </section>
-                    <section class="feature right">
-                        <a href="#" class="image icon fa-code"><img src="<?php echo img('pic02.jpg'); ?>" alt="" /></a>
-                        <div class="content">
-                            <h3>The Second Thing</h3>
-                            <p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis fusce lacus.</p>
-                        </div>
-                    </section>
-                    <section class="feature left">
-                        <a href="#" class="image icon fa-mobile"><img src="<?php echo img('pic03.jpg'); ?>" alt="" /></a>
-                        <div class="content">
-                            <h3>The Third Thing</h3>
-                            <p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus eget. Nunc nibh morbi quis fusce lacus.</p>
-                        </div>
-                    </section>
-                </div>
-
-                    <footer class="major container 75%">
-                        <h3>Get shady with science</h3>
-                        <p>Vitae natoque dictum etiam semper magnis enim feugiat amet curabitur tempor orci penatibus. Tellus erat mauris ipsum fermentum etiam vivamus.</p>
-                        <ul class="actions">
-                            <li><a href="#" class="button">Join our crew</a></li>
-                        </ul>
+              <?php if ($homepageText = get_theme_option('Homepage Text')): ?>
+                <footer class="major container 75%">
+                  <p><?php echo $homepageText; ?></p>
                 </footer>
+              <?php endif; ?>
+              <p></p>
+              <?php
+                $num_featured_items = get_theme_option('Display Featured Item');
+                if ($num_featured_items >= 1):
+              ?>
+                <header class="major container medium">
+                  <h2><?php echo(__('Featured Items')) ?></h2>
+                </header>
+                <div class="box alt container">
+                  <?php echo directive_random_featured_items($num_featured_items); ?>
+                </div>
+              <?php endif; ?>
+              <?php
+              $recentItems = get_theme_option('Homepage Recent Items');
+              if ($recentItems === null || $recentItems === ''):
+                  $recentItems = 3;
+              else:
+                  $recentItems = (int) $recentItems;
+              endif;
+              if ($recentItems):
+              ?>
+                <header class="major container medium">
+                  <h2><?php echo __('Recently Added Items'); ?></h2>
+                </header>
+                <div class="box alt container">
+                  <?php echo directive_recent_items($recentItems); ?>
+                  <p class="view-items-link"><a href="<?php echo html_escape(url('items')); ?>"><?php echo __('View All Items'); ?></a></p>
+                </div><!--end recent-items -->
+              <?php endif; ?>
             </div>
         <?php fire_plugin_hook('public_home', array('view' => $this)); ?>
     <?php echo foot(); ?>
